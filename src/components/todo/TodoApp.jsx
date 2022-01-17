@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 class TodoApp extends Component {
     render() {
         return (
-            <div className="TodoApp">
-                <LoginComponent />
-            </div>
-        )
+          <div className="TodoApp">
+            <h1>TODO Management App</h1>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<LoginComponent />} />
+                    <Route path="/login" element={<LoginComponent />} />
+                    <Route path="/welcome/*" element={<WelcomeComponent />} />
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Router>
+            {/* <LoginComponent />
+                <WelcomeComponent /> */}
+          </div>
+        );
     }
+}
+
+class WelcomeComponent extends Component {
+    render() {
+        return <div>Welcome {this.props.match.params.name}</div>
+    }
+}
+
+function ErrorComponent() {
+    return <div>An Error Occrred. I don't know what to do. Contact support at abcd-efgh-ijkl</div>
 }
 
 class LoginComponent extends Component {
@@ -36,15 +57,13 @@ class LoginComponent extends Component {
     loginClicked(event) {
         // username, password
         if(this.state.username === "username" && this.state.password === "password") {
-            console.log("Login Successful");
-            this.setState({ showSuccessfulLogin : true })
-            this.setState({ hasLoginFailed: false });
+            this.props.history.push(`/welcome/${this.state.username}`)
         }
         else {
             this.setState({ showSuccessfulLogin : false })
             this.setState({ hasLoginFailed: true });
+            console.log("Invalid credentials");
         }
-        console.log(this.state);
     }
 
     render() {
