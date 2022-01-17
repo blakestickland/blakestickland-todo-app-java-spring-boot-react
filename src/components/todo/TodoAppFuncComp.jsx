@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const TodoApp = () =>  {
     return (
@@ -12,6 +12,7 @@ const TodoApp = () =>  {
             <Route path="/" element={<LoginComponent />} />
             <Route path="/login" element={<LoginComponent />} />
             <Route path="/welcome/:name" element={<WelcomeComponent />} />
+            <Route path="/todos" element={<ListTodosComponent />} />
             <Route path="*" element={<ErrorComponent />} />
           </Routes>
         </Router>
@@ -19,11 +20,71 @@ const TodoApp = () =>  {
     );
 }
 
+const ListTodosComponent = () => {
+    const [todos, setTodos] = useState([
+      {
+        id: 1,
+        description: "Learn React",
+        done: false,
+        targetDate: new Date(),
+      },
+      {
+        id: 2,
+        description: "Make pizza dough",
+        done: false,
+        targetDate: new Date(),
+      },
+      {
+        id: 3,
+        description: "Take son to cinema",
+        done: false,
+        targetDate: new Date(),
+      },
+      {
+        id: 4,
+        description: "Get PCR test",
+        done: false,
+        targetDate: new Date(),
+      },
+    ]);
+
+    return (
+        <div>
+            <h1>List Todos</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>description</th>
+                        <th>Is Completed?</th>
+                        <th>Target Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        todos.map (
+                            todo =>
+                                <tr key={todo.id}>
+                                    <td>{todo.id}</td>
+                                    <td>{todo.description}</td>
+                                    <td>{todo.done.toString()}</td>
+                                    <td>{todo.targetDate.toString()}</td>
+                                </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+        </div>
+    )
+}
+
 const WelcomeComponent = () => {
     const { name } = useParams();
 
     return (
-        <div>Welcome {name}</div>
+        <div>
+            Welcome {name}. You can manage your todos <Link to="/todos">here</Link>.
+        </div>
     )
 }
 
