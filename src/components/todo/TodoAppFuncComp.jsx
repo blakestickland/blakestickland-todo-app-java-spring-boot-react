@@ -6,15 +6,17 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 const TodoApp = () =>  {
     return (
       <div className="TodoApp">
-        <h1>TODO Management App</h1>
         <Router>
+          <HeaderComponent />
           <Routes>
             <Route path="/" element={<LoginComponent />} />
             <Route path="/login" element={<LoginComponent />} />
             <Route path="/welcome/:name" element={<WelcomeComponent />} />
             <Route path="/todos" element={<ListTodosComponent />} />
+            <Route path="/logout" element={<LogoutComponent />} />
             <Route path="*" element={<ErrorComponent />} />
           </Routes>
+          <FooterComponent />
         </Router>
       </div>
     );
@@ -51,40 +53,102 @@ const ListTodosComponent = () => {
     return (
         <div>
             <h1>List Todos</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>description</th>
-                        <th>Is Completed?</th>
-                        <th>Target Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        todos.map (
-                            todo =>
-                                <tr key={todo.id}>
-                                    <td>{todo.id}</td>
-                                    <td>{todo.description}</td>
-                                    <td>{todo.done.toString()}</td>
-                                    <td>{todo.targetDate.toString()}</td>
-                                </tr>
-                        )
-                    }
-                </tbody>
-            </table>
+            <div className="container">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>description</th>
+                            <th>Is Completed?</th>
+                            <th>Target Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            todos.map (
+                                todo =>
+                                    <tr key={todo.id}>
+                                        <td>{todo.id}</td>
+                                        <td>{todo.description}</td>
+                                        <td>{todo.done.toString()}</td>
+                                        <td>{todo.targetDate.toString()}</td>
+                                    </tr>
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
+}
+
+const HeaderComponent = () => {
+    return (
+      <header>
+        <nav className="navbar navbar-expand-md navvbar-dark bg-dark">
+          <div>
+            <a href="https://www.in28minutes.com" className="navbar-brand text-secondary">
+              BlakeStickland
+            </a>
+          </div>
+          <ul className="navbar-nav">
+            <li>
+              <Link className="nav-link link-light" to="/welcome/in28minutes">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className="nav-link link-light" to="/todos">
+                Todos
+              </Link>
+            </li>
+          </ul>
+          <ul className="navbar-nav navbar-collapse justify-content-end">
+            <li>
+              <Link className="nav-link link-light" to="/login">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link className="nav-link link-light" to="/logout">
+                Logout
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    );
+}
+
+const FooterComponent = () => {
+    return (
+        <footer className="footer">
+            <span className="text-muted">All Rights Reserved 2022 Blake Stickland</span>
+        </footer>
+    );
+}
+
+const LogoutComponent = () => {
+    return (
+      <div>
+        <h1>You are logged out</h1>
+        <div className="container">
+            Thank you for using our application.
+        </div>
+      </div>
+    );
 }
 
 const WelcomeComponent = () => {
     const { name } = useParams();
 
     return (
-        <div>
-            Welcome {name}. You can manage your todos <Link to="/todos">here</Link>.
-        </div>
+        <>
+            <h1>Welcome!</h1>
+            <div className="container">
+                Welcome {name}. You can manage your todos <Link to="/todos">here</Link>.
+            </div>
+        </>
     )
 }
 
@@ -104,19 +168,6 @@ const LoginComponent = () =>  {
     const [showSuccessfulLogin, setShowSuccessfulLogin] = useState(false);
 
     const navigate = useNavigate(); 
-
-//   constructor(props) {
-    // super(props);
-
-    // this.state = {
-    //   username: "username",
-    //   password: "",
-    //   hasLoginFailed: false,
-    //   showSuccessfulLogin: false,
-    // };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.loginClicked = this.loginClicked.bind(this);
-//   }
 
   const handleChange = (event) => {
     console.log(username);
@@ -143,23 +194,26 @@ const LoginComponent = () =>  {
 
     return (
         <div>
-            {hasLoginFailed && <div>Invalid Credentials</div>}
-            {showSuccessfulLogin && <div>Login Successful</div>}
-            Username:{" "}
-            <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleChange}
-            />
-            Password:{" "}
-            <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            />
-            <button onClick={loginClicked}>Login</button>
+            <h1>Login</h1>
+            <div className="container">
+                {hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
+                {showSuccessfulLogin && <div>Login Successful</div>}
+                Username:{" "}
+                <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={handleChange}
+                />
+                Password:{" "}
+                <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                />
+                <button className="btn btn-success" onClick={loginClicked}>Login</button>
+            </div>
         </div>
     );
   
