@@ -1,10 +1,10 @@
-package com.blakelists.rest.webservices.restfulwebservices;
+package com.blakelists.rest.webservices.restfulwebservices.helloworld;
 
-public class HellowWorldBean {
+public class HelloWorldBean {
 	
 	private String message;
 
-	public HellowWorldBean(String message) {
+	public HelloWorldBean(String message) {
 		this.message = message;
 	}
 	
