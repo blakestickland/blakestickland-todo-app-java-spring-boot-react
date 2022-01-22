@@ -12,7 +12,7 @@ const HeaderComponent = () => {
       <nav className="navbar navbar-expand-md navvbar-dark bg-dark">
         <div>
           <a
-            href="https://www.in28minutes.com"
+            href="https://blakestickland.github.io/portfolio-web-dev/"
             className="navbar-brand text-secondary"
           >
             BlakeStickland
@@ -21,7 +21,7 @@ const HeaderComponent = () => {
         <ul className="navbar-nav">
           {isUserLoggedIn && (
             <li>
-              <Link className="nav-link link-light" to="/welcome/in28minutes">
+              <Link className="nav-link link-light" to="/welcome/blakelists">
                 Home
               </Link>
             </li>

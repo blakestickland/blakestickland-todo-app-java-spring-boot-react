@@ -64,13 +64,6 @@ class Counter extends Component {
 }
 
 class CounterButton extends Component {
-
-    // Define the initial state in a constructor.
-    // state => counter 0
-    constructor() {
-        super();    // Error #1 -- forgetting to call super() before defining state.
-    }
-
     render() {
         return (
           <div className="counter">

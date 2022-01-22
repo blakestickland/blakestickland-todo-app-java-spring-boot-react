@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Route, Navigate, Outlet } from "react-router-dom";
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import AuthenticationService from "./AuthenticationService";
 
-const AuthenticatedRoute = ({ component: Component, ...restOfProps }) => {
+const AuthenticatedRoute = () => {
     const isAuthenticated = AuthenticationService.isUserLoggedIn();
     console.log("this", isAuthenticated);
 
