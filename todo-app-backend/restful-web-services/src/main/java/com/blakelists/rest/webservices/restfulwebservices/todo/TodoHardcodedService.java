@@ -13,7 +13,7 @@ public class TodoHardcodedService {
 	private static int idCounter = 0;
 	
 	static {
-		todos.add(new Todo(++idCounter, "blakelists", "Learn to Dance", new Date(), false));
+		todos.add(new Todo(++idCounter, "blakelists", "Learn to Dance 2", new Date(), false));
 		todos.add(new Todo(++idCounter, "blakelists", "Learn about Angular", new Date(), false));
 		todos.add(new Todo(++idCounter, "blakelists", "Learn about Microservices", new Date(), false));
 	}
