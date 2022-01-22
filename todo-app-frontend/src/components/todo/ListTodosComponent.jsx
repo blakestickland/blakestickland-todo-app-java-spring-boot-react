@@ -1,33 +1,29 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TodoDataService from "../../api/todo/TodoDataService";
+import AuthenticationService from "./AuthenticationService.js";
 
 const ListTodosComponent = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      description: "Learn React",
-      done: false,
-      targetDate: new Date(),
-    },
-    {
-      id: 2,
-      description: "Make pizza dough",
-      done: false,
-      targetDate: new Date(),
-    },
-    {
-      id: 3,
-      description: "Take son to cinema",
-      done: false,
-      targetDate: new Date(),
-    },
-    {
-      id: 4,
-      description: "Get PCR test",
-      done: false,
-      targetDate: new Date(),
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
+
+
+  useEffect(() => {
+    console.log("inside useEffect");
+    let username = AuthenticationService.getLoggedInUsername();
+    TodoDataService.retrieveAllTodos(username)
+      .then(
+        response => {
+          // console.log(response);
+          setTodos(response.data);
+          console.log("after setting Todos state");
+        }
+      )
+  
+    // return () => {
+    //   second;
+    // };
+  }, []);
+  
 
   return (
     <div>

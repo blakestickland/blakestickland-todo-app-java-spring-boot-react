@@ -1,11 +1,13 @@
-package com.blakelists.rest.webservices.restfulwebservices;
+package com.blakelists.rest.webservices.restfulwebservices.helloworld;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 //Controller -- we want to handle rest requests so add annotation
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 public class HelloWorldController {
 	
 	//GET
@@ -18,13 +20,14 @@ public class HelloWorldController {
 	
 	//hello-world-bean
 	@GetMapping(path = "/hello-world-bean")
-	public HellowWorldBean helloWorldBean() {
-		return new HellowWorldBean("Hallo World");
+	public HelloWorldBean helloWorldBean() {
+		return new HelloWorldBean("Hallo World");
 	}
 
 	//hello-world-bean/path-variable/blakelists
 	@GetMapping(path = "/hello-world/path-variable/{name}")
-	public HellowWorldBean helloWorldPathVariable(@PathVariable String name) {
-		return new HellowWorldBean(String.format("Hallo World, %s!", name));
+	public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
+//		throw new RuntimeException ("Something went wrong");
+		return new HelloWorldBean(String.format("Hallo World, %s!", name));
 	}
 }
