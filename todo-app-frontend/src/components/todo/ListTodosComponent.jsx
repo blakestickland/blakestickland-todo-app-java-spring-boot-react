@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoDataService from "../../api/todo/TodoDataService";
 import AuthenticationService from "./AuthenticationService.js";
+import moment from "moment";
 
 const ListTodosComponent = () => {
   const [todos, setTodos] = useState([]);
@@ -27,17 +28,6 @@ const ListTodosComponent = () => {
   const updateTodoClicked = (id) => {
     console.log("update " + id);
     navigate(`/todos/${id}`);
-
-    // /todos/${id}
-    // let username = AuthenticationService.getLoggedInUsername();
-    // // console.log(id + " " + username);
-    // TodoDataService.updateTodo(username, id)
-    //   .then(
-    //     response => {
-    //       setMessage(`Update of todo ${id} Successful!`);
-    //       refreshTodos();
-    //     }
-    //   )
   } 
   
   const deleteTodoClicked = (id) => {
@@ -73,10 +63,26 @@ const ListTodosComponent = () => {
               <tr key={todo.id}>
                 <td>{todo.id}</td>
                 <td>{todo.description}</td>
+                <td>
+                  {moment(todo.targetDate).format("YYYY-MM-DD")}
+                </td>
                 <td>{todo.done.toString()}</td>
-                <td>{todo.targetDate.toString()}</td>
-                <td><button className="btn btn-success" onClick={() => updateTodoClicked(todo.id)}>Update</button></td>
-                <td><button className="btn btn-warning" onClick={() => deleteTodoClicked(todo.id)}>Delete</button></td>
+                <td>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => updateTodoClicked(todo.id)}
+                  >
+                    Update
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => deleteTodoClicked(todo.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

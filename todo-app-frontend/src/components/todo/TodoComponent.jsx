@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import moment from "moment";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -10,22 +10,37 @@ const TodoComponent = () => {
     const { id } = useParams();
     const [todo, setTodo] = useState({
         id,
-        description : "Learn Forms Now",
+        description : "",
         targetDate : moment(new Date()).format("YYYY-MM-DD")
     })
-
+    const navigate = useNavigate();
     let description = todo.description;
     let targetDate = todo.targetDate;
 
     useEffect(() => {
         let username = AuthenticationService.getLoggedInUsername();
         TodoDataService.retrieveTodo(username, id)
-            .then(response => console.log(response));
-    }, [id]);
+            .then((response) =>
+                setTodo({
+                    ...todo,
+                    description: response.data.description,
+                    targetDate: moment(response.data.targetDate).format("YYYY-MM-DD"),
+                })
+            );
+    }, [id, todo]);
     
 
     const onSubmit = (values) => {
-        console.log(values);
+        let username = AuthenticationService.getLoggedInUsername();
+        TodoDataService.updateTodo(username, id, {
+            id,
+            description: values.description,
+            targetDate: values.targetDate
+        }).then(
+            () => {
+                navigate(`/todos`);
+            }
+        );
     }
 
     const validate = (values) => {
