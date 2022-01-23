@@ -8,6 +8,7 @@ import HeaderComponent from "./HeaderComponent.jsx";
 import FooterComponent from "./FooterComponent.jsx";
 import WelcomeComponent from "./WelcomeComponent.jsx";
 import ErrorComponent from "./ErrorComponent.jsx";
+import TodoComponent from "./TodoComponent.jsx";
 
 const TodoApp = () =>  {
     return (
@@ -18,10 +19,13 @@ const TodoApp = () =>  {
                 <Route path="/" element={<LoginComponent />} />
                 <Route path="/login" element={<LoginComponent />} />
                 <Route path="/welcome/:name" element={<AuthenticatedRoute />}>
-                <Route path="/welcome/:name" element={<WelcomeComponent />} />
+                    <Route path="/welcome/:name" element={<WelcomeComponent />} />
+                </Route>
+                <Route path="/todos/:id" element={<AuthenticatedRoute />}>
+                    <Route path="/todos/:id" element={<TodoComponent />} />
                 </Route>
                 <Route path="/todos" element={<AuthenticatedRoute />}>
-                <Route path="/todos" element={<ListTodosComponent />} />
+                    <Route path="/todos" element={<ListTodosComponent />} />
                 </Route>
                 <Route path="/logout" element={<AuthenticatedRoute />}>
                     <Route path="/logout" element={<LogoutComponent />} />
