@@ -30,6 +30,10 @@ const ListTodosComponent = () => {
     navigate(`/todos/${id}`);
   } 
   
+  const addTodoClicked = (id) => {
+    navigate(`/todos/-1`);
+  } 
+  
   const deleteTodoClicked = (id) => {
     let username = AuthenticationService.getLoggedInUsername();
     // console.log(id + " " + username);
@@ -87,6 +91,9 @@ const ListTodosComponent = () => {
             ))}
           </tbody>
         </table>
+        <div>
+          <button className="btn btn-success" onClick={addTodoClicked}>Add</button>
+        </div>
       </div>
     </div>
   );

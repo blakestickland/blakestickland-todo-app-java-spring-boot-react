@@ -18,13 +18,14 @@ const TodoComponent = () => {
     let targetDate = todo.targetDate;
 
     useEffect(() => {
+        if (id === -1) return;
         let username = AuthenticationService.getLoggedInUsername();
         TodoDataService.retrieveTodo(username, id)
             .then((response) =>
                 setTodo({
                     ...todo,
-                    description: response.data.description,
-                    targetDate: moment(response.data.targetDate).format("YYYY-MM-DD"),
+                    description: response.data.description || todo.description,
+                    targetDate: moment(response.data.targetDate).format("YYYY-MM-DD") || todo.targetDate,
                 })
             );
     }, [id, todo]);
@@ -32,15 +33,27 @@ const TodoComponent = () => {
 
     const onSubmit = (values) => {
         let username = AuthenticationService.getLoggedInUsername();
-        TodoDataService.updateTodo(username, id, {
+        
+        let todo = {
             id,
             description: values.description,
-            targetDate: values.targetDate
-        }).then(
-            () => {
-                navigate(`/todos`);
-            }
-        );
+            targetDate: values.targetDate,
+        };
+        if (id === -1) {
+            TodoDataService.createTodo(username, todo)
+            .then(
+                () => {
+                    navigate(`/todos`);
+                }
+            );
+        } else {
+            TodoDataService.updateTodo(username, id, todo)
+            .then(
+                () => {
+                    navigate(`/todos`);
+                }
+            );
+        }
     }
 
     const validate = (values) => {
