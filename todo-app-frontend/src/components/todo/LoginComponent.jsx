@@ -6,8 +6,8 @@ import AuthenticationService from "./AuthenticationService.js";
 
 
 const LoginComponent = () => {
-  const [username, setUsername] = useState("username");
-  const [password, setPassword] = useState("password");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [hasLoginFailed, setHasLoginFailed] = useState(false);
   const [showSuccessfulLogin, setShowSuccessfulLogin] = useState(false);
 
@@ -21,17 +21,26 @@ const LoginComponent = () => {
 
   const loginClicked = (event) => {
     // username, password
-    if (username === "username" && password === "password") {
+    // if (username === "blakelists" && password === "password") {
+    //   AuthenticationService.registerSuccessfulLogin(username, password);
+    //   navigate(`/welcome/${username}`);
+    //   // setShowSuccessfulLogin(true);
+    //   // setHasLoginFailed(false);
+    // } else {
+    //   setShowSuccessfulLogin(false);
+    //   setHasLoginFailed(true);
+    //   console.log("Invalid credentials");
+    // }
+    
+    AuthenticationService
+    .executeBasicAuthenticationService(username, password)
+    .then(() => {
       AuthenticationService.registerSuccessfulLogin(username, password);
-      navigate(`/welcome/${username}`);
-      console.log("loginClicked with correct credentials");
-      setShowSuccessfulLogin(true);
-      setHasLoginFailed(false);
-    } else {
-      setShowSuccessfulLogin(false);
-      setHasLoginFailed(true);
-      console.log("Invalid credentials");
-    }
+      navigate(`/welcome/${username}`);    
+    }).catch(() => {
+        setShowSuccessfulLogin(false);
+        setHasLoginFailed(true);
+    })
   };
 
   return (
