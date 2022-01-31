@@ -1,4 +1,7 @@
-package com.blakelists.rest.webservices.restfulwebservices.jwt;
+package com.blakelists.rest.webservices.restfulwebservices.jwt.resource;
+
+import java.io.Serializable;
+
 public class JwtTokenResponse implements Serializable {
 
   private static final long serialVersionUID = 8317676219297719109L;

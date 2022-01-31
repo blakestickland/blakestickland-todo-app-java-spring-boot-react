@@ -32,27 +32,28 @@ const LoginComponent = () => {
     //   console.log("Invalid credentials");
     // }
     
-    AuthenticationService
-    .executeBasicAuthenticationService(username, password)
-    .then(() => {
-      AuthenticationService.registerSuccessfulLogin(username, password);
-      navigate(`/welcome/${username}`);    
-    }).catch(() => {
-        setShowSuccessfulLogin(false);
-        setHasLoginFailed(true);
-    })
-  };
-
   //   AuthenticationService
-  //   .executeJwtAuthenticationService(username, password)
-  //   .then((response) => {
-  //     AuthenticationService.registerSuccessfulLoginForJwt(username, response.data.token);
+  //   .executeBasicAuthenticationService(username, password)
+  //   .then(() => {
+  //     AuthenticationService.registerSuccessfulLogin(username, password);
   //     navigate(`/welcome/${username}`);    
   //   }).catch(() => {
   //       setShowSuccessfulLogin(false);
   //       setHasLoginFailed(true);
   //   })
   // };
+
+    AuthenticationService
+    .executeJwtAuthenticationService(username, password)
+    .then((response) => {
+      console.log(response);
+      AuthenticationService.registerSuccessfulLoginForJwt(username, response.data.token);
+      navigate(`/welcome/${username}`);    
+    }).catch(() => {
+        setShowSuccessfulLogin(false);
+        setHasLoginFailed(true);
+    })
+  };
 
   return (
     <div>
