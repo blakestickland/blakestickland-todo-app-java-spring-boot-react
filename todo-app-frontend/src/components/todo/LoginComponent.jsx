@@ -43,6 +43,17 @@ const LoginComponent = () => {
     })
   };
 
+  //   AuthenticationService
+  //   .executeJwtAuthenticationService(username, password)
+  //   .then((response) => {
+  //     AuthenticationService.registerSuccessfulLoginForJwt(username, response.data.token);
+  //     navigate(`/welcome/${username}`);    
+  //   }).catch(() => {
+  //       setShowSuccessfulLogin(false);
+  //       setHasLoginFailed(true);
+  //   })
+  // };
+
   return (
     <div>
       <h1>Login</h1>
