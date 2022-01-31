@@ -19,6 +19,10 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
         "$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e", "ROLE_USER_2"));
     inMemoryUserList.add(new JwtUserDetails(1L, "blakelists",
         "$2a$10$GbtmtLBd4ZFeHTrxk0NKtOOL6QeRqokk8lyKnskzrxFQ2azQO1pgm", "ROLE_USER_2"));
+    
+//    original token for blakelists:  "$2a$10$GbtmtLBd4ZFeHTrxk0NKtOOL6QeRqokk8lyKnskzrxFQ2azQO1pgm",
+//    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFrZWxpc3RzIiwiZXhwIjoxNjQ0MTk3NjMyLCJpYXQiOjE2NDM1OTI4MzJ9.ieO_xaDzJ-KqcmoGznJKBc27gyOXMgjfvKD1WAZRr1ftHe96itV90WDJsUEziHPFkx987ndPsSfCWid3dygpHA"
+
   }
 
   @Override

@@ -38,13 +38,13 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .userDetailsService(jwtInMemoryUserDetailsService)
-            .passwordEncoder(new BCryptPasswordEncoder());
+            .passwordEncoder(passwordEncoderBean());
     }
 
-    //@Bean
-    //public PasswordEncoder passwordEncoderBean() {
-    //    return new BCryptPasswordEncoder();
-    //}
+    @Bean
+    public PasswordEncoder passwordEncoderBean() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     @Override
