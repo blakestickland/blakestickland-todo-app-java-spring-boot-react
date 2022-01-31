@@ -1,17 +1,10 @@
-package com.blakelists.rest.webservices.restfulwebservices.jwt.resource;
-
-import java.io.Serializable;
-
+package com.blakelists.rest.webservices.restfulwebservices.jwt;
 public class  JwtTokenRequest implements Serializable {
   
   private static final long serialVersionUID = -5616176897013108345L;
 
   private String username;
     private String password;
-    
-//    {
-//    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpbjI4bWludXRlcyIsImV4cCI6MTY0NDIwMTIyMCwiaWF0IjoxNjQzNTk2NDIwfQ.2NQQMdqAZNBzdHaYBEpPfFexS96Ob6bUb-hXKKcTZbWXSYyHUqD-oa9GMpKOgNq05ck0VMEnhyJvBWJyatoYSQ"
-//    }
 
     public JwtTokenRequest() {
         super();

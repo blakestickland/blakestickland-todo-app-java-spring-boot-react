@@ -1,29 +1,4 @@
-package com.blakelists.rest.webservices.restfulwebservices.jwt.resource;
-
-import java.util.Objects;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.blakelists.rest.webservices.restfulwebservices.jwt.JwtTokenUtil;
-import com.blakelists.rest.webservices.restfulwebservices.jwt.JwtUserDetails;
-
+package com.blakelists.rest.webservices.restfulwebservices.jwt;
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 public class JwtAuthenticationRestController {
