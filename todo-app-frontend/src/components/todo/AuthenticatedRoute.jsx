@@ -6,7 +6,12 @@ const AuthenticatedRoute = () => {
     const isAuthenticated = AuthenticationService.isUserLoggedIn();
     console.log("this", isAuthenticated);
 
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login/" />;
+    return isAuthenticated ? 
+      { ...this.props.children }
+     : (
+      <Navigate to="/login/" />
+    );
+    // return isAuthenticated ? <Outlet /> : <Navigate to="/login/" />;
 }
 
 export default AuthenticatedRoute;
