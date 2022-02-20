@@ -14,6 +14,7 @@ const TodoComponent = () => {
         targetDate : moment(new Date()).format("YYYY-MM-DD")
     })
     const navigate = useNavigate();
+
     let description = todo.description;
     let targetDate = todo.targetDate;
 
@@ -39,15 +40,16 @@ const TodoComponent = () => {
             description: values.description,
             targetDate: values.targetDate,
         };
-        if (id === -1) {
+        if (todo.id === -1) {
             TodoDataService.createTodo(username, todo)
             .then(
                 () => {
+                    // this.props.navigate(`/todos`);
                     navigate(`/todos`);
                 }
             );
         } else {
-            TodoDataService.updateTodo(username, id, todo)
+            TodoDataService.updateTodo(username, todo.id, todo)
             .then(
                 () => {
                     navigate(`/todos`);

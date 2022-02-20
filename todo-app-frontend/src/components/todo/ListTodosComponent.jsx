@@ -28,6 +28,7 @@ const ListTodosComponent = () => {
   const updateTodoClicked = (id) => {
     console.log("update " + id);
     navigate(`/todos/${id}`);
+    // this.props.navigate(`/todos/${id}`)
   } 
   
   const addTodoClicked = (id) => {
